@@ -1,12 +1,10 @@
 import './App.css';
-import memes from './memes.js';
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
 import Meme from './Meme.js';
 
-
-
 function App() {
-  const [allMemesData, setAllMemesData] = useState(memes.filter((meme) => meme.box_count == 2))
+
+  const [allMemesData, setAllMemesData] = useState([])
 
   const [meme, setMeme] = useState({
     topText: "If you could make a react meme generator",
@@ -14,11 +12,18 @@ function App() {
     randomImage: "https:\/\/i.imgflip.com/c2qn.jpg"
   })
   
+  useEffect(() => {
+    console.log('from the api')
+    fetch("https://api.imgflip.com/get_memes")
+    .then((res) => res.json())
+    .then(data => setAllMemesData(data.data.memes))
+  }, [])
+
   const updateMemeImage = () => {
-    let newMeme = allMemesData[Math.floor(Math.random() * allMemesData.length)]
-    setMeme(prev => {
-      return {...prev, "randomImage": newMeme.url}
-    })
+    setMeme((oldMeme) => (
+      {...oldMeme, randomImage: allMemesData[Math.floor(Math.random()*allMemesData.length)].url }
+      ))
+    console.log("set from data")
   }
 
   const handleTextInput = (e) => {
@@ -60,7 +65,7 @@ function App() {
         </div>
 
         <button className="form-submit" onClick={updateMemeImage} type="">Get a new meme image</button>
-    </div>
+      </div>
 
       
       <Meme {...meme} />
