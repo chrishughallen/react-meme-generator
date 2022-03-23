@@ -13,7 +13,6 @@ function App() {
   })
   
   useEffect(() => {
-    console.log('from the api')
     fetch("https://api.imgflip.com/get_memes")
     .then((res) => res.json())
     .then(data => setAllMemesData(data.data.memes))
@@ -23,7 +22,6 @@ function App() {
     setMeme((oldMeme) => (
       {...oldMeme, randomImage: allMemesData[Math.floor(Math.random()*allMemesData.length)].url }
       ))
-    console.log("set from data")
   }
 
   const handleTextInput = (e) => {
@@ -31,7 +29,6 @@ function App() {
     setMeme(prevMeme => ({
       ...prevMeme, [name]: value 
     }))
-    console.log(meme)
   }
 
   return (
