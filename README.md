@@ -1,6 +1,6 @@
 
 ### `Random Meme Generator`
-This project was built in React, and utilize the imgflip meme api.
+This project was built in React, and utilizes the imgflip meme api.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 In the project directory, you can run:

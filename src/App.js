@@ -64,7 +64,6 @@ function App() {
         <button className="form-submit" onClick={updateMemeImage} type="">Get a new meme image</button>
       </div>
 
-      
       <Meme {...meme} />
     </div>
   );

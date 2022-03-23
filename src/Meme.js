@@ -1,6 +1,4 @@
 import './Meme.css';
-import memes from './memes.js';
-import {useState} from 'react'
 
 export default function Meme(props) {
   return(
